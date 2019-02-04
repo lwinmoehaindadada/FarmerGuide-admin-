@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:textSize="18.0sp"
+        android:textStyle="bold"
+        android:textColor="@color/material_green_500"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="144.0dip"
+        android:text="Farmer Guide Admin"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ImageView
+        android:layout_width="100.0dip"
+        android:layout_height="100.0dip"
+        android:layout_marginTop="30.0dip"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:srcCompat="@drawable/icon" />
+
+    <LinearLayout
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="20.0dip"
+        android:layout_marginRight="20.0dip"
+        android:layout_marginBottom="20.0dip">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="20.0dip"
+            app:passwordToggleEnabled="true">
+
+            <EditText
+                android:id="@+id/edt_password"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="password"
+                android:ems="10"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:inputType="textPassword" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Button
+            android:textColor="@android:color/white"
+            android:id="@+id/button"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="OK"
+            android:onClick="onOkClick"
+            style="@style/adminButtons" />
+    </LinearLayout>
+</RelativeLayout>

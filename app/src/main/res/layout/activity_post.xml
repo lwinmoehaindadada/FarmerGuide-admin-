@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="10.0dip"
+    android:layout_marginTop="10.0dip"
+    android:layout_marginRight="10.0dip"
+    android:background="#ffffffff"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffdcdcdc" />
+
+    <LinearLayout
+        android:id="@+id/first"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30.0dip"
+            android:layout_height="40.0dip"
+            android:src="@drawable/book" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:text="သတင္း"
+                android:textColor="#ff000000"
+                android:textSize="20.0dip" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10.0dip"
+                android:textColor="#ff000000"
+                android:textSize="12.0dip" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2.0dip"
+        android:layout_marginTop="5.0dip"
+        android:background="#ffdcdcdc" />
+
+    <TextView
+        android:id="@id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10.0dip"
+        android:paddingTop="5.0dip"
+        android:textColor="@color/colorPrimary"
+        android:textSize="17.0dip" />
+
+    <com.borjabravo.readmoretextview.ReadMoreTextView
+        android:id="@+id/info"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="1.5dip"
+        android:padding="10.0dip"
+        android:textColor="#ff000000"
+        android:textSize="16.0dip"
+        app:colorClickableText="@color/colorPrimary"
+        app:showTrimExpandedText="false"
+        app:trimCollapsedText="@string/showmore"
+        app:trimLength="210"
+        app:trimMode="trimModeLength" />
+</LinearLayout>

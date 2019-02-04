@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:icon="@drawable/ic_conversation" android:id="@+id/nav_conversation" android:title="Conversation" />
+    <item android:icon="@drawable/news" android:id="@+id/nav_post" android:title="Post" />
+    <item android:icon="@drawable/ic_key" android:id="@+id/change_pass" android:title="Change Password" />
+    <item android:icon="@drawable/ic_log_out" android:id="@+id/log_out" android:title="Log Out" />
+</menu>

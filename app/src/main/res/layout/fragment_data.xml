@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#ffdcdcdc"
+    android:paddingTop="8.0dip"
+    android:paddingBottom="8.0dip">
+
+    <GridView
+        android:id="@+id/data_list_grid_view"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="8.0dip"
+        android:layout_marginRight="8.0dip"
+        android:numColumns="2"
+        android:scrollbars="none" />
+</FrameLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="20.0dip">
+
+        <LinearLayout
+            android:id="@+id/l1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+            <EditText
+                android:id="@+id/titleCreatePost"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15.0dip"
+                android:background="@drawable/input_outline"
+                android:cursorVisible="true"
+                android:hint="ေခါင္းစဥ္"
+                android:padding="5.0dip"
+                android:textColor="@color/material_green_500"
+                android:textCursorDrawable="@drawable/my_cursor" />
+
+            <EditText
+                android:id="@+id/infoCreatePost"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5.0dip"
+                android:background="@drawable/no_border"
+                android:cursorVisible="true"
+                android:hint="အေျကာင္းအရာ?"
+                android:padding="5.0dip" />
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="fill_parent"
+                android:layout_height="300.0dip" />
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="1.0">
+
+        <Button
+            android:id="@+id/selectImage"
+            style="@style/adminButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_gravity="center"
+            android:layout_weight="0.5"
+            android:text="ဓာတ္ပုံေရြးရန္" />
+
+        <Button
+            android:id="@+id/uploadPost"
+            style="@style/adminButtons"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="သတင္းတင္ရန္" />
+    </LinearLayout>
+</RelativeLayout>
