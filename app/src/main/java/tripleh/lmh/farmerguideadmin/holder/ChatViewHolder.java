@@ -70,6 +70,13 @@ public class ChatViewHolder extends ViewHolder implements ChatBinder {
             }
         }
         this.chatItem.setOnClickListener(new ChatItemClickListener(c, this.context));
+        this.chatItem.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                
+                return false;
+            }
+        });
     }
 
     private void setAnimation(View viewToAnimate, int position) {
