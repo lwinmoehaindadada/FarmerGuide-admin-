@@ -1,0 +1,3 @@
+# FarmerGuide-admin-
+
+password->>admin
