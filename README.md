@@ -2,4 +2,4 @@
 
 password->>admin
 
-Testing Github pages haha
+This is an admin app for farmers guide app.
