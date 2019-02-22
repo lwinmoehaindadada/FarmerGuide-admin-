@@ -10,15 +10,19 @@ import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.MediaStore.Images.Media;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +44,8 @@ import tripleh.lmh.farmerguideadmin.model.Post;
 import tripleh.lmh.farmerguideadmin.statics.RefStatic;
 import tripleh.lmh.farmerguideadmin.utility.FileUtil;
 import tripleh.lmh.farmerguideadmin.utility.ImageUtil;
+import tripleh.lmh.farmerguideadmin.utility.Mdetect;
+import tripleh.lmh.farmerguideadmin.utility.Rabbit;
 
 public class writepost extends AppCompatActivity {
     private String UploadImageUrl;
@@ -111,7 +117,12 @@ public class writepost extends AppCompatActivity {
                                             @Override
                                             public void onSuccess(Uri uri) {
                                                 String id = writepost.this.mDatabase.push().getKey();
-                                                writepost.this.mDatabase.child(id).setValue(new Post(id, writepost.this.s1, writepost.this.s2, writepost.this.today, uri.toString(), 2));
+                                                Post post=new Post(id, writepost.this.s1, writepost.this.s2, writepost.this.today, uri.toString(), 2);
+                                                if(!Mdetect.isUnicode()){
+                                                    post.setTitle(Rabbit.zg2uni(post.getTitle()));
+                                                    post.setInfo(Rabbit.zg2uni(post.getInfo()));
+                                                }
+                                                writepost.this.mDatabase.child(id).setValue(post);
 
                                             }
                                         }).addOnFailureListener(new C06941());
@@ -186,13 +197,7 @@ public class writepost extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 1 && resultCode == -1 && data != null) {
             this.filePath = data.getData();
-            Bitmap bitmap = null;
-            try {
-                bitmap = Media.getBitmap(getContentResolver(), this.filePath);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            ((ImageView) findViewById(R.id.img)).setImageBitmap(bitmap);
+            Glide.with(this).load(this.filePath).into(((ImageView)findViewById(R.id.img)));
         }
     }
 }

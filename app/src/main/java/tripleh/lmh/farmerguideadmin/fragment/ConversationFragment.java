@@ -33,6 +33,8 @@ import tripleh.lmh.farmerguideadmin.R;
 import tripleh.lmh.farmerguideadmin.adapter.ChatAdapter;
 import tripleh.lmh.farmerguideadmin.model.Chat;
 import tripleh.lmh.farmerguideadmin.statics.RefStatic;
+import tripleh.lmh.farmerguideadmin.utility.Mdetect;
+import tripleh.lmh.farmerguideadmin.utility.Rabbit;
 
 public class ConversationFragment extends Fragment {
     public static String cityNow = "pakokku";
@@ -81,6 +83,8 @@ public class ConversationFragment extends Fragment {
 
         public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
             Chat chat = (Chat) dataSnapshot.getValue(Chat.class);
+            if(!Mdetect.isUnicode())
+                chat.setLastmessage(Rabbit.uni2zg(chat.getLastmessage()));
             ConversationFragment.this.adapter.addToTop(chat);
             Log.i(DataBufferSafeParcelable.DATA_FIELD, "date added");
             Log.i("Chat Data", chat.toString());
@@ -90,6 +94,8 @@ public class ConversationFragment extends Fragment {
 
         public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
             Chat chat = (Chat) dataSnapshot.getValue(Chat.class);
+            if(!Mdetect.isUnicode())
+                chat.setLastmessage(Rabbit.uni2zg(chat.getLastmessage()));
             Log.i("change", "data changed");
             for (int i = 0; i < ConversationFragment.this.chats.size(); i++) {
                 if (((Chat) ConversationFragment.this.chats.get(i)).getId().equals(chat.getId())) {

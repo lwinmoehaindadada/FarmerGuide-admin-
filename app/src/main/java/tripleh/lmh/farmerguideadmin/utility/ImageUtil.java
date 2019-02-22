@@ -172,7 +172,7 @@ public class ImageUtil {
     }
 
     public void showError(String errorMessage) {
-        Toast.makeText(this.context, errorMessage, 0).show();
+        Toast.makeText(this.context, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     public void uploadImage() {

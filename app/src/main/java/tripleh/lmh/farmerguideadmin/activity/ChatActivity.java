@@ -51,6 +51,8 @@ import tripleh.lmh.farmerguideadmin.service.ChatHelper;
 import tripleh.lmh.farmerguideadmin.statics.RefStatic;
 import tripleh.lmh.farmerguideadmin.utility.FileUtil;
 import tripleh.lmh.farmerguideadmin.utility.ImageUtil;
+import tripleh.lmh.farmerguideadmin.utility.Mdetect;
+import tripleh.lmh.farmerguideadmin.utility.Rabbit;
 
 public class ChatActivity extends AppCompatActivity {
 
@@ -182,23 +184,6 @@ public class ChatActivity extends AppCompatActivity {
 
                     ImageUtil imgu = new ImageUtil(actualImage,this, user,true);
                     imgu.uploadImage();
-//                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                    builder.setMessage("Are you sure want to send this photo");
-//                    builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//                            // User clicked OK button
-//
-//                        }
-//
-//                    });
-//                    builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//                            // User cancelled the dialog
-//                        }
-//                    });
-//            e.printStackTrace();
-//                              AlertDialog dialog = builder.create();
-//                    dialog.show();
 
                 } catch (IOException e) {
                 }
@@ -210,23 +195,6 @@ public class ChatActivity extends AppCompatActivity {
             if (resultCode == RESULT_OK) {
                 final Image image=new Image((Bitmap)data.getExtras().get("data"),user);
                 new ImageUpload(this,true).execute(image);
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-//                builder.setMessage("Are you sure want to send this photo");
-//                builder.setPositiveButton("SEND", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        // User clicked OK load
-//
-//                    }
-//
-//                });
-//                builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        // User cancelled the dialog
-//                    }
-//                });
-//                AlertDialog dialog = builder.create();
-//                dialog.show();
-//
 
             } else {
                 Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT).show();
@@ -293,6 +261,8 @@ public class ChatActivity extends AppCompatActivity {
                     }
                     else {
                         Message mg = dataSnapshot.getValue(Message.class);
+                        if(!Mdetect.isUnicode())
+                            mg.setText(Rabbit.uni2zg(mg.getText()));
                         messagesId.add(itempos,dataSnapshot.getKey());
                         messages.add(itempos++, mg);
                         moreItem=false;
@@ -359,6 +329,8 @@ public class ChatActivity extends AppCompatActivity {
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Message mg=dataSnapshot.getValue(Message.class);
                 Log.i("MEssage ", mg.getMessageType() + "########"+mg.getText());
+                if(!Mdetect.isUnicode())
+                    mg.setText(Rabbit.uni2zg(mg.getText()));
                 messages.add(mg);
                 messagesId.add(dataSnapshot.getKey());
                 itempos++;
@@ -408,6 +380,9 @@ public class ChatActivity extends AppCompatActivity {
 
         Message mg = new Message( user.getId(), Type.admin, editText.getText().toString(),ServerValue.TIMESTAMP,"",MessageType.text, false);
         String key = database.push().getKey();
+        if(!Mdetect.isUnicode()){
+            mg.setText(Rabbit.zg2uni(mg.getText()));
+        }
         database.child(key).setValue(mg);
         ChatHelper.sendChat("pakokku",user.getId(),mg,user.getName(),true);
         editText.setText("");

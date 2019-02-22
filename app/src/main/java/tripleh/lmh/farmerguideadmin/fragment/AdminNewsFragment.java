@@ -27,6 +27,8 @@ import tripleh.lmh.farmerguideadmin.activity.writepost;
 import tripleh.lmh.farmerguideadmin.adapter.AdminPostAdapter;
 import tripleh.lmh.farmerguideadmin.model.Post;
 import tripleh.lmh.farmerguideadmin.statics.RefStatic;
+import tripleh.lmh.farmerguideadmin.utility.Mdetect;
+import tripleh.lmh.farmerguideadmin.utility.Rabbit;
 
 public class AdminNewsFragment extends Fragment {
     public LinkedList<String> id = new LinkedList();
@@ -68,6 +70,10 @@ public class AdminNewsFragment extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Post user = (Post) dataSnapshot.getValue(Post.class);
+                if(!Mdetect.isUnicode()) {
+                    user.setTitle(Rabbit.uni2zg(user.getTitle()));
+                    user.setInfo(Rabbit.uni2zg(user.getInfo()));
+                }
                 user.setId(dataSnapshot.getKey());
                 if (!AdminNewsFragment.this.id.contains(user.getId())) {
                     AdminNewsFragment.this.postArray.add(0, user);
